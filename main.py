@@ -113,13 +113,12 @@ def get_date_range(frequency: str):
 
     if frequency == "daily":
         start_date = today - timedelta(days=1)  # Yesterday
-        end_date = today - timedelta(days=1)  # Yesterday
+        end_date = today  # Today (AWS requires end_date > start_date)
     elif frequency == "monthly":
         first_day_last_month = today.replace(day=1) - timedelta(days=1)
         start_date = first_day_last_month.replace(day=1)  # Start of last month
-        end_date = first_day_last_month  # Last day of last month
+        end_date = today  # Today
 
-    # Return start and end date in the format YYYY-MM-DD
     return start_date.strftime("%Y-%m-%d"), end_date.strftime("%Y-%m-%d")
 
 # query_aws_cost_api function queries the AWS cost API based on TimePeriod

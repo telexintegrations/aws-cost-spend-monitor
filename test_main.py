@@ -26,11 +26,11 @@ def test_get_date_range(frequency):
 
     if frequency == "daily":
         expected_start = (today - timedelta(days=1)).strftime("%Y-%m-%d")
-        expected_end = (today - timedelta(days=1)).strftime("%Y-%m-%d")
+        expected_end = today.strftime("%Y-%m-%d")  # Change from yesterday to today
     elif frequency == "monthly":
         first_day_last_month = today.replace(day=1) - timedelta(days=1)
         expected_start = first_day_last_month.replace(day=1).strftime("%Y-%m-%d")
-        expected_end = first_day_last_month.strftime("%Y-%m-%d")
+        expected_end = today.strftime("%Y-%m-%d")  # Change from last month's end to today
 
     start_date, end_date = get_date_range(frequency)
 
