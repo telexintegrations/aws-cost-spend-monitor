@@ -1,0 +1,7 @@
+uvicorn
+pydantic
+requests
+boto3
+fastapi
+pytest
+httpx
