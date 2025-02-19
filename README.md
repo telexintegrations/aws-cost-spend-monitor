@@ -3,7 +3,7 @@
 ## Overview
 AWS Spend Monitor is a FastAPI-based Telex integration that tracks AWS costs in real-time and sends alerts to Telex to help members of an organization stay within budget. It supports daily and monthly cost monitoring.
 
-## What Is Telex
+## What Is Telex?
 Telex is an all-in-one monitoring solution for DevOps and software teams, enabling real-time communication and event logging via HTTP webhooks. It supports bulk data ingestion and integrates with platforms like Slack, Discord, and Microsoft Teams for seamless message routing.
 
 **Link:** https://telex.im
@@ -69,7 +69,7 @@ Triggers cost monitoring based on the configured frequency and sends alerts if s
 
 ## How to Get AWS Access Key and Secret Key
 
-To use AWS Spend Monitor, you need an **AWS Access Key ID** and **AWS Secret Access Key**. Follow these steps:
+To use AWS Spend Monitor, you need an **AWS Access Key ID** and **AWS Secret Access Key**. Follow these steps to obtain them:
 
 ### **1. Sign in to AWS Console**
 - Go to [AWS Management Console](https://aws.amazon.com/console/).
@@ -151,9 +151,6 @@ pip install -r requirements.txt
 python main.py
 ```
 
-## Integration
-Ensure integration follows the `/integration` endpoint example.
-
 ## Deployment
 1. **Deploy API**: Host the integration on a cloud provider (e.g., AWS Lambda, Render, or Heroku). Ensure necessary environment variables (AWS keys, thresholds) are set.
 2. **Install in Telex**: Provide the integration endpoint in Telex.
@@ -167,6 +164,10 @@ pytest test_main.py
 ```
 - Verify Telex messages are received with the correct AWS cost updates.
 
+## Integration Type
+AWS Spend Monitor uses interval-based integration, meaning it is triggered at specified intervals. The user defines this interval in the integration settings using a crontab expression.
+However, the integration is configured to use only two types of intervals, which are Monthly(0 0 1 * *) and Daily(0 0 * * *).
+
 ## Screenshots
 
 ![success](https://github.com/telexintegrations/aws-cost-spend-monitor/blob/main/images/success_alert.png)
@@ -174,7 +175,7 @@ pytest test_main.py
 
 ## License
 
-This project is licensed under the [MIT License](https://github.com/telexintegrations/aws-cost-spend-monitor/blob/main/LICENSE) - see the  file for details.
+This project is licensed under the [MIT License](https://github.com/telexintegrations/aws-cost-spend-monitor/blob/main/LICENSE) - see the LICENSE file for details.
 
 
 
