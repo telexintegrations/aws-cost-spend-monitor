@@ -46,11 +46,13 @@ jobs:
         with:
           python-version: 3.9
 
-      - name: Install uv
-        run: pip install uv
-
-      - name: Sync dependencies
-        run: uv sync || pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Deploy to Render
-        run: curl -X GET "https://api.render.com/deploy/srv-cur1eea3esus739u38k0?key=${{ secrets.RENDER_API_KEY }}"
+        run: |
+          curl -X POST "https://api.render.com/v1/services/srv-cur1eea3esus739u38k0/deploys" \
+               -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+               -H "Accept: application/json"
