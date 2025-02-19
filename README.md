@@ -140,7 +140,7 @@ Fetches AWS cost data for a given time period and returns the total cost along w
 1. **Clone the repository**
 ```bash
 git clone https://github.com/telexintegrations/aws-cost-spend-monitor.git
-cd spendsense
+cd aws-cost-spend-monitor
 ```
 2. **Install the dependencies**
 ```bash
