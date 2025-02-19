@@ -8,6 +8,7 @@ dependencies = [
     "black>=25.1.0",
     "fastapi[all,standard]>=0.115.8",
     "httpx>=0.28.1",
+    "requests>=2.31.0",
 ]
 
 [build-system]

@@ -1,6 +1,6 @@
 uvicorn
 pydantic
-requests
+requests>=2.31.0
 boto3
 fastapi
 pytest
