@@ -28,7 +28,7 @@ jobs:
         run: uv sync
 
       - name: Run Tests
-        run: pytest --maxfail=1 --disable-warnings -q
+        run: pytest test_main.py --maxfail=1 --disable-warnings -q
 
   deploy:
     needs: test
