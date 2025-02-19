@@ -24,8 +24,8 @@ jobs:
       - name: Install uv
         run: pip install uv
 
-      - name: Install pytest and FastAPI
-        run: pip install pytest fastapi
+      - name: Install pytest, FastAPI, and HTTPX
+        run: pip install pytest fastapi httpx
 
       - name: Sync dependencies
         run: uv sync || pip install -r requirements.txt
