@@ -169,12 +169,12 @@ pytest test_main.py
 
 ## Screenshots
 
-![success](https://github.com/Tonyjr7/SpendSense/blob/main/images/success_alert.png)
-![error](https://github.com/Tonyjr7/SpendSense/blob/main/images/error_alert.png)
+![success](https://github.com/telexintegrations/aws-cost-spend-monitor/blob/main/images/success_alert.png)
+![error](https://github.com/telexintegrations/aws-cost-spend-monitor/blob/main/images/error_alert.png)
 
 ## License
 
-This project is licensed under the [MIT License](https://github.com/Tonyjr7/SpendSense/blob/main/LICENSE) - see the  file for details.
+This project is licensed under the [MIT License](https://github.com/telexintegrations/aws-cost-spend-monitor/blob/main/LICENSE) - see the  file for details.
 
 
 
