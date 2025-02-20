@@ -3,10 +3,15 @@
 ## Overview
 AWS Spend Monitor is a FastAPI-based Telex integration that tracks AWS costs in real-time and sends alerts to Telex to help members of an organization stay within budget. It supports daily and monthly cost monitoring.
 
+**Link:** https://aws-spend-monitor.onrender.com/integration
+
 ## What Is Telex?
 Telex is an all-in-one monitoring solution for DevOps and software teams, enabling real-time communication and event logging via HTTP webhooks. It supports bulk data ingestion and integrates with platforms like Slack, Discord, and Microsoft Teams for seamless message routing.
 
 **Link:** https://telex.im
+
+## Integration Type
+AWS Spend Monitor uses interval-based integration, meaning it is triggered at specified intervals. The user defines this interval in the integration settings using a crontab expression.
 
 ## Endpoints
 
@@ -29,10 +34,12 @@ This helps in adding integration to Telex.
     "is_active": false,
     "integration_type": "interval",
     "key_features": [
-      "Real-Time Cost Tracking",
-      "Automated Alerts",
-      "Simple Integration",
-      "Custom Thresholds"
+      "Tracks AWS spending in real-time and sends alerts.",
+      "Supports daily and monthly cost monitoring.",
+      "Automatically fetches AWS cost data using Cost Explorer API.",
+      "Notifies users when spending exceeds the configured threshold.",
+      "Allows custom threshold and frequency settings.",
+      "Validates AWS credentials to prevent misconfigurations."
     ],
     "integration_category": "Finance & Payments",
     "author": "Anthony Triumph",
@@ -118,19 +125,6 @@ Now you can use the access keys in AWS Spend Monitor settings to query AWS cost 
 
 ---
 
-## Helper Functions
-
-### `get_frequency(interval: str) -> str`
-Determines the frequency of cost checks based on the provided cron-like interval.
-
-### `get_date_range(frequency: str) -> Tuple[str, str]`
-Returns the appropriate date range (daily or monthly) for cost calculations.
-
-### `query_aws_cost_api(aws_access_key_id: str, aws_secret_access_key: str, start_date: str, end_date: str) -> Tuple[float, str]`
-Fetches AWS cost data for a given time period and returns the total cost along with a status message.
-
----
-
 ## Requirements
 - AWS Account with Cost Explorer enabled (see configuration steps above).
 - Telex account and organization.
@@ -163,10 +157,6 @@ python main.py
 pytest test_main.py
 ```
 - Verify Telex messages are received with the correct AWS cost updates.
-
-## Integration Type
-AWS Spend Monitor uses interval-based integration, meaning it is triggered at specified intervals. The user defines this interval in the integration settings using a crontab expression.
-However, the integration is configured to use only two types of intervals, which are Monthly(0 0 1 * *) and Daily(0 0 * * *).
 
 ## Screenshots
 
