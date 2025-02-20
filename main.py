@@ -37,7 +37,7 @@ async def integration(request: Request):
 
     integration_json = {
         "data": {
-            "date": {"created_at": "2025-02-17", "updated_at": "2025-02-17"},
+            "date": {"created_at": "2025-02-19", "updated_at": "2025-02-19"},
             "descriptions": {
                 "app_name": "AWS Spend Monitor",
                 "app_description": "This app tracks AWS costs in real time, sending alerts to Telex to help you stay on budget.",
@@ -48,10 +48,12 @@ async def integration(request: Request):
             "is_active": False,
             "integration_type": "interval",
             "key_features": [
-                "Real-Time Cost Tracking",
-                "Automated Alerts",
-                "Simple Integration",
-                "Access Cost Explorer API on you AWS account",
+                "Tracks AWS spending in real-time and sends alerts.",
+                "Supports daily and monthly cost monitoring.",
+                "Automatically fetches AWS cost data using Cost Explorer API.",
+                "Notifies users when spending exceeds the configured threshold.",
+                "Allows custom threshold and frequency settings.",
+                "Validates AWS credentials to prevent misconfigurations."
             ],
             "integration_category": "Finance & Payments",
             "author": "Anthony Triumph",
