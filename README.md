@@ -23,11 +23,11 @@ This helps in adding integration to Telex.
 ```json
 {
   "data": {
-    "date": {"created_at": "2025-02-17", "updated_at": "2025-02-17"},
+    "date": {"created_at": "2025-02-19", "updated_at": "2025-02-19"},
     "descriptions": {
       "app_name": "AWS Spend Monitor",
       "app_description": "This app tracks AWS costs based on intervals, sending alerts to Telex to help you stay on budget.",
-      "app_logo": "https://i.imgur.com/WHMTdpx.png",
+      "app_logo": "https://cdn.prod.website-files.com/5f05d5858fab461d0d08eaeb/654132b253b4e36b9d799ee4_6427c1d7f47c952c5838718d_2d67f7b91666ed485b01206d538bb37b_1-fc-23372-267-c-4369-8-a-31-294-c-5-f-5-fe-949.webp",
       "app_url": "https://your-api-url.com",
       "background_color": "#fff"
     },
