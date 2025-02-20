@@ -160,7 +160,7 @@ def query_aws_cost_api(aws_access_key_id: str, aws_secret_access_key: str, start
 
     except Exception as e:
         print(f"Error querying AWS cost API: {e}")
-        return 0.0, None
+        return None, None
 
 # Telex's Calls this endpoint when interval defined is reached
 @app.post("/tick")
@@ -181,24 +181,26 @@ async def monitor_spending(payload: Payload):
     start_date, end_date = get_date_range(frequency)
     cost, account = query_aws_cost_api(aws_access_key_id, aws_secret_access_key, start_date, end_date)
 
-    print(f"AWS Cost: ${cost}")
-    # Send Telex notification based on cost and threshold
-    if cost < threshold:
+    # Send Telex notification based on cost and threshold, handles exceptions also
+    if account is None:
+        message = "🚨 AWS Spend Monitor: Invalid AWS credentials provided. Please check your configuration."
+        status = "error"
+    elif cost < threshold:
         message = (
-            f"✅ *AWS Spend Alert*\n\n"
-            f"🏦 *AWS Account:* {account}\n"
-            f"💰 *Current Spend:* ${cost}\n"
-            f"🎯 *Threshold:* ${threshold}\n"
-            f"🟢 *Status:* Within Budget"
+            f"✅ AWS Spend Alert\n\n"
+            f"🏦 AWS Account: {account}\n"
+            f"💰 Current Spend: ${cost}\n"
+            f"🎯 Threshold: ${threshold}\n"
+            f"🟢 Status: Within Budget"
         )
         status = "success"
     else:
         message = (
-            f"🔔 *AWS Spend Alert*\n\n"
-            f"🏦 *AWS Account:* {account}\n"
-            f"💰 *Current Spend:* ${cost}\n"
-            f"🎯 *Threshold:* ${threshold}\n"
-            f"🔴 *Status:* Exceeded Budget"
+            f"🔔 AWS Spend Alert\n\n"
+            f"🏦 AWS Account: {account}\n"
+            f"💰 Current Spend: ${cost}\n"
+            f"🎯 Threshold: ${threshold}\n"
+            f"🔴 Status: Exceeded Budget"
         )
         status = "error"
 
