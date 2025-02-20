@@ -79,7 +79,7 @@ async def integration(request: Request):
                     "label": "frequency",
                     "type": "dropdown",
                     "options": ["Daily", "Monthly"],
-                    "description": "Select Check Frequency",
+                    "description": "Select Time Period",
                     "default": "Daily",
                     "required": True
                 },
@@ -184,10 +184,22 @@ async def monitor_spending(payload: Payload):
     print(f"AWS Cost: ${cost}")
     # Send Telex notification based on cost and threshold
     if cost < threshold:
-        message = f"✅ AWS Spend Alert\nAccount: {account}\nCurrent Spend: ${cost}\nThreshold: ${threshold}\n Status: Within Budget"
+        message = (
+            f"✅ *AWS Spend Alert*\n\n"
+            f"🏦 *AWS Account:* {account}\n"
+            f"💰 *Current Spend:* ${cost}\n"
+            f"🎯 *Threshold:* ${threshold}\n"
+            f"🟢 *Status:* Within Budget"
+        )
         status = "success"
     else:
-        message = f"🔔 AWS Spend Alert\nAccount: {account}\nCurrent Spend: ${cost}\nThreshold: ${threshold}\n Status: Exceeded Budget"
+        message = (
+            f"🔔 *AWS Spend Alert*\n\n"
+            f"🏦 *AWS Account:* {account}\n"
+            f"💰 *Current Spend:* ${cost}\n"
+            f"🎯 *Threshold:* ${threshold}\n"
+            f"🔴 *Status:* Exceeded Budget"
+        )
         status = "error"
 
     # Send Telex response using Telex way of receiving Response
