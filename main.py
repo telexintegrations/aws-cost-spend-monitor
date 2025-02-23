@@ -106,8 +106,6 @@ def get_frequency(interval):
     # Checks if the interval is monthly
     elif interval == "0 0 1 * *":
         return "monthly"
-    else:
-        return "unknown"
 
 # get_date_range function for get AWS Cost based on frequency
 def get_date_range(frequency: str):
