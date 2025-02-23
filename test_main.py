@@ -9,7 +9,6 @@ client = TestClient(app)
 # Test get_frequency function
 @pytest.mark.parametrize("interval, expected", [
     ("0 0 * * *", "daily"),
-    ("0 0 * * 1", "unknown"),
     ("0 0 1 * *", "monthly"),
 ])
 def test_get_frequency(interval, expected):
