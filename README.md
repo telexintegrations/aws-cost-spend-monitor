@@ -74,44 +74,29 @@ Triggers cost monitoring based on the configured frequency and sends alerts if s
 }
 ```
 
-## How to Get AWS Access Key and Secret Key
+## IAM Policy for Cost Monitoring
+To allow AWS Spend Monitor to access cost data, assign the following IAM policy to your user or role:
 
-To use AWS Spend Monitor, you need an **AWS Access Key ID** and **AWS Secret Access Key**. Follow these steps to obtain them:
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "ce:GetCostAndUsage",
+            "Resource": "*"
+        }
+    ]
+}
+```
+Follow these steps to assign permissions:
+1. Go to **IAM** in AWS Console.
+2. Select **Users** and choose the relevant user.
+3. Click **Permissions**, then **Attach policies directly**.
+4. Search for the name of the policy you saved earlier and attach policy.
+5. Click **Next: Review**, then **Create User**.
 
-### **1. Sign in to AWS Console**
-- Go to [AWS Management Console](https://aws.amazon.com/console/).
-- Log in with your AWS credentials.
-
-### **2. Navigate to IAM (Identity and Access Management)**
-- In the AWS search bar, type **"IAM"** and select **IAM**.
-- Click on **Users** from the sidebar.
-
-### **3. Create a New IAM User (If Needed)**
-- Click **Add Users** (if you don’t have an existing user).
-- Enter a username (e.g., `cost-tracker`).
-- Select **Programmatic access**.
-- Click **Next: Permissions**.
-
-### **4. Assign Permissions**
-- Choose **Attach policies directly**.
-- Search for and select **Billing** and **Cost Explorer permissions**:
-  - `AWSBillingReadOnlyAccess`
-  - `AWSCostExplorerReadOnlyAccess`
-- Click **Next: Review** and then **Create User**.
-
-### **5. Retrieve Access Key and Secret Key**
-- After user creation, you’ll see an option to **Download .csv** or copy:
-  - **Access Key ID**
-  - **Secret Access Key**
-
-⚠ **Important:** Store these keys securely. AWS won’t show the secret key again after this step.
-
-### **6. Enable Cost Explorer (If Not Already Enabled)**
-- Go to **Billing Dashboard** → **Cost Management** → **Cost Explorer**.
-- Click **Enable Cost Explorer** (if not enabled).
-- Wait for AWS to activate Cost Explorer (may take a few hours).
-
-Now you can use the access keys in AWS Spend Monitor settings to query AWS cost data. 🚀
+This grants the necessary permissions for retrieving AWS cost data.
 
 ---
 
@@ -158,15 +143,5 @@ pytest test_main.py
 ```
 - Verify Telex messages are received with the correct AWS cost updates.
 
-## Screenshots
-
-![success](https://github.com/telexintegrations/aws-cost-spend-monitor/blob/main/images/success_alert.png)
-![error](https://github.com/telexintegrations/aws-cost-spend-monitor/blob/main/images/error_alert.png)
-
 ## License
-
 This project is licensed under the [MIT License](https://github.com/telexintegrations/aws-cost-spend-monitor/blob/main/LICENSE) - see the LICENSE file for details.
-
-
-
-
